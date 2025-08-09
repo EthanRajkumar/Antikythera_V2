@@ -1,7 +1,8 @@
 package com.example.antikythera;
 
 import java.lang.Math;
-import java.time.ZoneId;
+import java.time.*;
+import java.util.Objects;
 import java.util.Scanner;
 
 
@@ -60,7 +61,7 @@ public class UtilMath {
     //compute d (Julian Dates)
     //Parameters are in Universal Time
     //The parameters will be user input, which they will enter in whatever timezone they choose
-    public static double d() {
+    /*public static double d() {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("On what date do you want to find the planet's information?");
@@ -83,7 +84,7 @@ public class UtilMath {
 
         System.out.print("Second (0-59): ");
         int second = scanner.nextInt();
-*/
+
 
         //these numbers aren't need for Julian Dates computation
         int hour = 0;
@@ -124,11 +125,42 @@ public class UtilMath {
         double d = 367 * y - (7*(y + ((m+9)/12)))/4 + (275*m)/9 + day_calc - 730530;
 
         return d;
+    }*/
+
+    public static PlanetInfoResult calculatePlanetInfo(int year, int month, int day, int hour, int minute, int second, ZoneId zoneId) {
+        Objects.requireNonNull(zoneId, "zoneId must not be null");
+
+        final LocalDateTime localDateTime;
+        try {
+            localDateTime = LocalDateTime.of(year, month, day, hour, minute, second);
+        } catch (DateTimeException ex) {
+            throw new IllegalArgumentException("Invalid date/time: " + ex.getMessage(), ex);
+        }
+
+        ZonedDateTime zoned = ZonedDateTime.of(localDateTime, zoneId);
+        ZonedDateTime utc = zoned.withZoneSameInstant(ZoneOffset.UTC);
+
+
+        int y = utc.getYear();
+        int m = utc.getMonthValue();
+        int dDay = utc.getDayOfMonth();
+
+
+        double fracDay = (utc.getHour() + (utc.getMinute() / 60.0) + (utc.getSecond() / 3600.0)) / 24.0;
+
+        if (m <= 2) {
+            y -= 1;
+            m += 12;
+        }
+
+
+        double term1 = Math.floor(367.0 * y);
+        double term2 = Math.floor(7.0 * (y + Math.floor((m + 9.0) / 12.0)) / 4.0);
+        double term3 = Math.floor(275.0 * m / 9.0);
+
+        double f = term1 - term2 + term3 + (dDay + fracDay) - 730530.0;
+
+        return new PlanetInfoResult(f, localDateTime, zoneId, utc.toLocalDateTime());
     }
-
-
-
-
-
 
 }
