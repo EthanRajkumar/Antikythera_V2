@@ -8,7 +8,7 @@ public class Planets
 
     //Mercury position
     //note: eccentricity may need some modification
-    public static void Mercury(double d) //d = computed Julian day number converter date
+    public static PlanetInfoResult Mercury(double d) //d = computed Julian day number converter date
         {
             node = (48.3313 + (3.24587E-5*d))%360; //Long asc. node N
             inclination = (7.0047 + (5.00E-8*d))%360; //Inclination i
@@ -34,33 +34,13 @@ public class Planets
             zeclip = r * UtilMath.sind(v+perihelion) * UtilMath.sind(inclination);
 
             longitude = UtilMath.fnrev(UtilMath.atan2d(yeclip, xeclip));
-            latitude = UtilMath.atan2d(zeclip, Math.sqrt((xeclip * xeclip) + (yeclip * yeclip))); // still wrong
-            //System.out.println(longitude);
-            //System.out.println(latitude);
+            latitude = UtilMath.atan2d(zeclip, Math.sqrt((xeclip * xeclip) + (yeclip * yeclip)));
 
-            System.out.println("Longitude of Ascension: " + node);
-            System.out.println("Inclination: " + inclination);
-            System.out.println("Argument of Perihelion: " + perihelion);
-            System.out.println("Semi-major Axis: " + SMaxis);
-            System.out.println("Eccentricity: " + eccentricity);
-            System.out.println("Mean Anomaly: " + M_normalized);
-            System.out.println("Eccentric Anomaly" + E1);
-            System.out.println("Heliocentric distance: " + r);
-            System.out.println("True Anomaly: " + v);
-            System.out.println("Ecliptic Coordinate X:" + xeclip);
-            System.out.println("Ecliptic Coordinate Y:" +yeclip);
-            System.out.println("Ecliptic Coordinate Z:" +zeclip);
-            System.out.println("Longitude: " + longitude);
-            System.out.println("Latitude: " + latitude);
-
-
-            //System.out.println(longitude);
-            //System.out.println(latitude);
-
+            return new PlanetInfoResult(new double[] { node, inclination, perihelion, SMaxis, eccentricity, M_normalized, E1, r, v, xeclip, yeclip, zeclip, longitude, latitude });
         }
 
     //Venus position
-    public static void Venus(double d)
+    public static PlanetInfoResult Venus(double d)
     {
         node = (76.6799+ (2.46590E-5*d))%360;
         inclination =( 3.3946 + (2.75E-8*d))%360;
@@ -86,28 +66,13 @@ public class Planets
         zeclip = r * UtilMath.sind(v+perihelion) * UtilMath.sind(inclination);
 
         longitude = UtilMath.fnrev(UtilMath.atan2d(yeclip, xeclip));
-        latitude = UtilMath.atan2d(zeclip, Math.sqrt((xeclip * xeclip) + (yeclip * yeclip))); // still wrong
-        //System.out.println(longitude);
-        //System.out.println(latitude);
+        latitude = UtilMath.atan2d(zeclip, Math.sqrt((xeclip * xeclip) + (yeclip * yeclip)));
 
-        System.out.println("Longitude of Ascension: " + node);
-        System.out.println("Inclination: " + inclination);
-        System.out.println("Argument of Perihelion: " + perihelion);
-        System.out.println("Semi-major Axis: " + SMaxis);
-        System.out.println("Eccentricity: " + eccentricity);
-        System.out.println("Mean Anomaly: " + M_normalized);
-        System.out.println("Eccentric Anomaly" + E1);
-        System.out.println("Heliocentric distance: " + r);
-        System.out.println("True Anomaly: " + v);
-        System.out.println("Ecliptic Coordinate X:" + xeclip);
-        System.out.println("Ecliptic Coordinate Y:" +yeclip);
-        System.out.println("Ecliptic Coordinate Z:" +zeclip);
-        System.out.println("Longitude: " + longitude);
-        System.out.println("Latitude: " + latitude);
+        return new PlanetInfoResult(new double[] { node, inclination, perihelion, SMaxis, eccentricity, M_normalized, E1, r, v, xeclip, yeclip, zeclip, longitude, latitude });
     }
 
     //Mars position
-    public static void Mars(double d)
+    public static PlanetInfoResult Mars(double d)
     {
         node = (49.5574 + (2.11081E-5 * d))%360;
         inclination = (1.8497 - (1.78E-8*d))%360;
@@ -133,28 +98,13 @@ public class Planets
         zeclip = r * UtilMath.sind(v+perihelion) * UtilMath.sind(inclination);
 
         longitude = UtilMath.fnrev(UtilMath.atan2d(yeclip, xeclip));
-        latitude = UtilMath.atan2d(zeclip, Math.sqrt((xeclip * xeclip) + (yeclip * yeclip))); // still wrong
-        //System.out.println(longitude);
-        //System.out.println(latitude);
+        latitude = UtilMath.atan2d(zeclip, Math.sqrt((xeclip * xeclip) + (yeclip * yeclip)));
 
-        System.out.println("Longitude of Ascension: " + node);
-        System.out.println("Inclination: " + inclination);
-        System.out.println("Argument of Perihelion: " + perihelion);
-        System.out.println("Semi-major Axis: " + SMaxis);
-        System.out.println("Eccentricity: " + eccentricity);
-        System.out.println("Mean Anomaly: " + M_normalized);
-        System.out.println("Eccentric Anomaly" + E1);
-        System.out.println("Heliocentric distance: " + r);
-        System.out.println("True Anomaly: " + v);
-        System.out.println("Ecliptic Coordinate X:" + xeclip);
-        System.out.println("Ecliptic Coordinate Y:" +yeclip);
-        System.out.println("Ecliptic Coordinate Z:" +zeclip);
-        System.out.println("Longitude: " + longitude);
-        System.out.println("Latitude: " + latitude);
+        return new PlanetInfoResult(new double[] { node, inclination, perihelion, SMaxis, eccentricity, M_normalized, E1, r, v, xeclip, yeclip, zeclip, longitude, latitude });
     }
 
     //Jupiter position
-    public static void Jupiter(double d)
+    public static PlanetInfoResult Jupiter(double d)
     {
         node = (100.4542 + (2.76854E-5 * d ))%360;
         inclination = (1.3030 - (1.557E-7 * d))%360;
@@ -180,28 +130,13 @@ public class Planets
         zeclip = r * UtilMath.sind(v+perihelion) * UtilMath.sind(inclination);
 
         longitude = UtilMath.fnrev(UtilMath.atan2d(yeclip, xeclip));
-        latitude = UtilMath.atan2d(zeclip, Math.sqrt((xeclip * xeclip) + (yeclip * yeclip))); // still wrong
-        //System.out.println(longitude);
-        //System.out.println(latitude);
+        latitude = UtilMath.atan2d(zeclip, Math.sqrt((xeclip * xeclip) + (yeclip * yeclip)));
 
-        System.out.println("Longitude of Ascension: " + node);
-        System.out.println("Inclination: " + inclination);
-        System.out.println("Argument of Perihelion: " + perihelion);
-        System.out.println("Semi-major Axis: " + SMaxis);
-        System.out.println("Eccentricity: " + eccentricity);
-        System.out.println("Mean Anomaly: " + M_normalized);
-        System.out.println("Eccentric Anomaly" + E1);
-        System.out.println("Heliocentric distance: " + r);
-        System.out.println("True Anomaly: " + v);
-        System.out.println("Ecliptic Coordinate X:" + xeclip);
-        System.out.println("Ecliptic Coordinate Y:" +yeclip);
-        System.out.println("Ecliptic Coordinate Z:" +zeclip);
-        System.out.println("Longitude: " + longitude);
-        System.out.println("Latitude: " + latitude);
+        return new PlanetInfoResult(new double[] { node, inclination, perihelion, SMaxis, eccentricity, M_normalized, E1, r, v, xeclip, yeclip, zeclip, longitude, latitude });
     }
 
     //Saturn position
-    public static void Saturn(double d)
+    public static PlanetInfoResult Saturn(double d)
     {
         node = (113.6634 + (2.38980E-5 * d))%360;
         inclination = ( 2.4886 - (1.081E-7 * d))%360;
@@ -227,28 +162,13 @@ public class Planets
         zeclip = r * UtilMath.sind(v+perihelion) * UtilMath.sind(inclination);
 
         longitude = UtilMath.fnrev(UtilMath.atan2d(yeclip, xeclip));
-        latitude = UtilMath.atan2d(zeclip, Math.sqrt((xeclip * xeclip) + (yeclip * yeclip))); // still wrong
-        //System.out.println(longitude);
-        //System.out.println(latitude);
+        latitude = UtilMath.atan2d(zeclip, Math.sqrt((xeclip * xeclip) + (yeclip * yeclip)));
 
-        System.out.println("Longitude of Ascension: " + node);
-        System.out.println("Inclination: " + inclination);
-        System.out.println("Argument of Perihelion: " + perihelion);
-        System.out.println("Semi-major Axis: " + SMaxis);
-        System.out.println("Eccentricity: " + eccentricity);
-        System.out.println("Mean Anomaly: " + M_normalized);
-        System.out.println("Eccentric Anomaly" + E1);
-        System.out.println("Heliocentric distance: " + r);
-        System.out.println("True Anomaly: " + v);
-        System.out.println("Ecliptic Coordinate X:" + xeclip);
-        System.out.println("Ecliptic Coordinate Y:" +yeclip);
-        System.out.println("Ecliptic Coordinate Z:" +zeclip);
-        System.out.println("Longitude: " + longitude);
-        System.out.println("Latitude: " + latitude);
+        return new PlanetInfoResult(new double[] { node, inclination, perihelion, SMaxis, eccentricity, M_normalized, E1, r, v, xeclip, yeclip, zeclip, longitude, latitude });
     }
 
     //Uranus position
-    public static void Uranus(double d)
+    public static PlanetInfoResult Uranus(double d)
     {
         node = (74.0005 + (1.3978E-5 * d))%360;
         inclination = (0.7733 + (1.9E-8 * d ))%360;
@@ -274,28 +194,13 @@ public class Planets
         zeclip = r * UtilMath.sind(v+perihelion) * UtilMath.sind(inclination);
 
         longitude = UtilMath.fnrev(UtilMath.atan2d(yeclip, xeclip));
-        latitude = UtilMath.atan2d(zeclip, Math.sqrt((xeclip * xeclip) + (yeclip * yeclip))); // still wrong
-        //System.out.println(longitude);
-        //System.out.println(latitude);
+        latitude = UtilMath.atan2d(zeclip, Math.sqrt((xeclip * xeclip) + (yeclip * yeclip)));
 
-        System.out.println("Longitude of Ascension: " + node);
-        System.out.println("Inclination: " + inclination);
-        System.out.println("Argument of Perihelion: " + perihelion);
-        System.out.println("Semi-major Axis: " + SMaxis);
-        System.out.println("Eccentricity: " + eccentricity);
-        System.out.println("Mean Anomaly: " + M_normalized);
-        System.out.println("Eccentric Anomaly" + E1);
-        System.out.println("Heliocentric distance: " + r);
-        System.out.println("True Anomaly: " + v);
-        System.out.println("Ecliptic Coordinate X:" + xeclip);
-        System.out.println("Ecliptic Coordinate Y:" +yeclip);
-        System.out.println("Ecliptic Coordinate Z:" +zeclip);
-        System.out.println("Longitude: " + longitude);
-        System.out.println("Latitude: " + latitude);
+        return new PlanetInfoResult(new double[] { node, inclination, perihelion, SMaxis, eccentricity, M_normalized, E1, r, v, xeclip, yeclip, zeclip, longitude, latitude });
     }
 
     //Neptune position
-    public static void Neptune(double d)
+    public static PlanetInfoResult Neptune(double d)
     {
         node = (131.7806 + (3.0173E-5 * d))%360;
         inclination = (1.7700 - (2.55E-7 * d ))%360;
@@ -321,29 +226,13 @@ public class Planets
         zeclip = r * UtilMath.sind(v+perihelion) * UtilMath.sind(inclination);
 
         longitude = UtilMath.fnrev(UtilMath.atan2d(yeclip, xeclip));
-        latitude = UtilMath.atan2d(zeclip, Math.sqrt((xeclip * xeclip) + (yeclip * yeclip))); // still wrong
-        //System.out.println(longitude);
-        //System.out.println(latitude);
+        latitude = UtilMath.atan2d(zeclip, Math.sqrt((xeclip * xeclip) + (yeclip * yeclip)));
 
-        System.out.println("Longitude of Ascension: " + node);
-        System.out.println("Inclination: " + inclination);
-        System.out.println("Argument of Perihelion: " + perihelion);
-        System.out.println("Semi-major Axis: " + SMaxis);
-        System.out.println("Eccentricity: " + eccentricity);
-        System.out.println("Mean Anomaly: " + M_normalized);
-        System.out.println("Eccentric Anomaly" + E1);
-        System.out.println("Heliocentric distance: " + r);
-        System.out.println("True Anomaly: " + v);
-        System.out.println("Ecliptic Coordinate X:" + xeclip);
-        System.out.println("Ecliptic Coordinate Y:" +yeclip);
-        System.out.println("Ecliptic Coordinate Z:" +zeclip);
-        System.out.println("Longitude: " + longitude);
-        System.out.println("Latitude: " + latitude);
-
+        return new PlanetInfoResult(new double[] { node, inclination, perihelion, SMaxis, eccentricity, M_normalized, E1, r, v, xeclip, yeclip, zeclip, longitude, latitude });
     }
 
     //Sun position --> stationary, but somewhat needed for your point of view
-    public static void Sun(double d)
+    public static PlanetInfoResult Sun(double d)
     {
         node = 0; //Long asc. node N
         inclination = 0; //Inclination i
@@ -381,21 +270,14 @@ public class Planets
 
         //lon    28.6869_deg      28.6813_deg        +0.0056_deg = 20"
         //r       1.004323         1.004311          +0.000012
-        System.out.println("Longitude of Ascension: " + node);
-        System.out.println("Inclination: " + inclination);
-        System.out.println("Argument of Perihelion: " + perihelion);
-        System.out.println("Semi-major Axis: " + SMaxis);
-        System.out.println("Eccentricity: " + eccentricity);
-        System.out.println("Heliocentric distance: " + r);
-        System.out.println("True Anomaly: " + v);
-        System.out.println("Longitude: " + longitude);
-        System.out.println("Latitude: " + latitude);
+
+        return new PlanetInfoResult(new double[] { node, inclination, perihelion, SMaxis, eccentricity, -1, -1, r, v, -1, -1, -1, longitude, latitude });
 
     }
 
     //Moon position
     //anomaly, E0, E1, x, y, r, v, xeclip, yeclip, zeclip, longitude, latitude;
-    public static void Moon(double d)
+    public static PlanetInfoResult Moon(double d)
     {
         node = (125.1228 - (0.0529538083 * d)); //N
         inclination = 5.1454; //i
@@ -440,19 +322,6 @@ public class Planets
         //lat  =  -0.3937_deg
         //r    =  60.6713
 
-        System.out.println("Longitude of Ascension: " + node);
-        System.out.println("Inclination: " + inclination);
-        System.out.println("Argument of Perihelion: " + perihelion);
-        System.out.println("Semi-major Axis: " + SMaxis);
-        System.out.println("Eccentricity: " + eccentricity);
-        System.out.println("Eccentric Anomaly:" + E0);
-        System.out.println("Final Eccentric Anomaly" + E1);
-        System.out.println("Heliocentric distance: " + r);
-        System.out.println("True Anomaly: " + v);
-        System.out.println("Ecliptic Coordinate X:" + xeclip);
-        System.out.println("Ecliptic Coordinate Y:" +yeclip);
-        System.out.println("Ecliptic Coordinate Z:" +zeclip);
-        System.out.println("Longitude: " + longitude);
-        System.out.println("Latitude: " + latitude);
+        return new PlanetInfoResult(new double[] { node, inclination, perihelion, SMaxis, eccentricity, E0, E1, r, v, xeclip, yeclip, zeclip, longitude, latitude });
     }
 }

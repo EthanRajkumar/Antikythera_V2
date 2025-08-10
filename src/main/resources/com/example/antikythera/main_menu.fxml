@@ -20,13 +20,8 @@
             <Font name="Arial Bold" size="32.0" />
          </font>
       </Label>
-      <Button fx:id="alignmentTodayBtn" alignment="CENTER" graphicTextGap="0.0" layoutX="76.0" layoutY="302.0" mnemonicParsing="false" onAction="#openAlignmentsToday" prefHeight="33.0" prefWidth="142.0" style="-fx-background-color: #cfb16c; -fx-background-radius: 10; -fx-text-fill: black;" text="Today's Alignments" wrapText="true">
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </Button>
-      <Button fx:id="planetPredictionBtn" layoutX="226.0" layoutY="301.0" mnemonicParsing="false" onAction="#openBodySelect" prefHeight="33.0" prefWidth="142.0" style="-fx-background-color: #cfb16c; -fx-background-radius: 10; -fx-text-fill: black;" text="Planet Predictions" />
-      <Button fx:id="eclipsePredictionBtn" layoutX="377.0" layoutY="301.0" mnemonicParsing="false" onAction="#openEclipseSelect" prefHeight="33.0" prefWidth="142.0" style="-fx-background-color: #cfb16c; -fx-background-radius: 10; -fx-text-fill: black;" text="Eclipse Predictions" />
+      <Button fx:id="planetPredictionBtn" layoutX="151.0" layoutY="301.0" mnemonicParsing="false" onAction="#openBodySelect" prefHeight="33.0" prefWidth="142.0" style="-fx-background-color: #cfb16c; -fx-background-radius: 10; -fx-text-fill: black;" text="Planet Predictions" />
+      <Button fx:id="eclipsePredictionBtn" layoutX="302.0" layoutY="301.0" mnemonicParsing="false" onAction="#openEclipseSelect" prefHeight="33.0" prefWidth="142.0" style="-fx-background-color: #cfb16c; -fx-background-radius: 10; -fx-text-fill: black;" text="Eclipse Predictions" />
       <Label fx:id="dateLabel" alignment="CENTER" layoutX="149.0" layoutY="250.0" prefHeight="26.0" prefWidth="306.0" style="-fx-text-fill: rgba(255, 255, 255, 0.5);" text="[Insert Date, Month, Year, Timezone]" textFill="#cccccc" wrapText="true">
          <font>
             <Font name="System Bold Italic" size="12.0" />

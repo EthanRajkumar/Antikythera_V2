@@ -24,11 +24,7 @@ public class AntikytheraApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 600, 400);
         SceneSwapper.stage = primaryStage;
 
-        String title = "Solar Eclipse Type: ";
-
-        while (rs.next()) {
-            title += rs.getString("Type");
-        }
+        String title = "Antikythera Replication Project";
 
         primaryStage.setTitle(title);
         primaryStage.setScene(scene);

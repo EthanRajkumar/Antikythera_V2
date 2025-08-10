@@ -127,40 +127,23 @@ public class UtilMath {
         return d;
     }*/
 
-    public static PlanetInfoResult calculatePlanetInfo(int year, int month, int day, int hour, int minute, int second, ZoneId zoneId) {
-        Objects.requireNonNull(zoneId, "zoneId must not be null");
+    public static double d(int year, int month, int day, int hour, int minute, int second, ZoneId zoneId) {
+        UniversalTime ut = new UniversalTime(year, month, day, hour, minute, second, zoneId);
 
-        final LocalDateTime localDateTime;
-        try {
-            localDateTime = LocalDateTime.of(year, month, day, hour, minute, second);
-        } catch (DateTimeException ex) {
-            throw new IllegalArgumentException("Invalid date/time: " + ex.getMessage(), ex);
-        }
+        //get UTC values
+        int y = ut.getYear();
+        int m = ut.getMonth();
+        int day_calc = ut.getDays();
 
-        ZonedDateTime zoned = ZonedDateTime.of(localDateTime, zoneId);
-        ZonedDateTime utc = zoned.withZoneSameInstant(ZoneOffset.UTC);
-
-
-        int y = utc.getYear();
-        int m = utc.getMonthValue();
-        int dDay = utc.getDayOfMonth();
-
-
-        double fracDay = (utc.getHour() + (utc.getMinute() / 60.0) + (utc.getSecond() / 3600.0)) / 24.0;
-
+        //there is some weird stuff with months 1 and 2
         if (m <= 2) {
-            y -= 1;
+            y--;
             m += 12;
         }
 
+        double d = 367 * y - (7*(y + ((m+9)/12)))/4 + (275*m)/9 + day_calc - 730530;
 
-        double term1 = Math.floor(367.0 * y);
-        double term2 = Math.floor(7.0 * (y + Math.floor((m + 9.0) / 12.0)) / 4.0);
-        double term3 = Math.floor(275.0 * m / 9.0);
-
-        double f = term1 - term2 + term3 + (dDay + fracDay) - 730530.0;
-
-        return new PlanetInfoResult(f, localDateTime, zoneId, utc.toLocalDateTime());
+        return d;
     }
 
 }

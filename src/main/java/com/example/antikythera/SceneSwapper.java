@@ -38,6 +38,16 @@ public class SceneSwapper {
             {
                 return loader.<EclipseSelectController>getController();
             }
+
+            case "time_select.fxml":
+            {
+                return loader.<TimeSelectController>getController();
+            }
+
+            case "body_prediction.fxml":
+            {
+                return loader.<BodyPredictController>getController();
+            }
         }
 
         return null;
